@@ -5,5 +5,5 @@ class Link
   property :url, Text
 end
 
-DataMapper.setup(:default, 'postgres://localhost/bookmarkmanager')
+DataMapper.setup(:default, 'postgres://localhost/bookmark_manager_test')
 DataMapper.finalize.auto_upgrade!
