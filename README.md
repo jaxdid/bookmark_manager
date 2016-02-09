@@ -1,7 +1,7 @@
 BOOKMARK MANAGER
 ================
 
-- Authors: Mark Hill (markcmhill), Alain Lemaire (jaxdid)
+- Authors: Mark Hill (markcmhill), Alain Lemaire (jaxdid), Tom Pickard (tcpickard94)
 - Date created: 08/02/16
 - Makers Academy: Week 4
 
