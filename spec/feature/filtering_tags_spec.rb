@@ -1,13 +1,21 @@
+
+
 feature 'filtering tags' do
+
+    before(:each) do
+        Link.create(url: 'http://www.makersacademy.com', title: 'Makers Academy', tags: [Tag.first_or_create(name: 'education')])
+        Link.create(url: 'http://www.google.com', title: 'Google', tags: [Tag.first_or_create(name: 'search engine')])
+        Link.create(url: 'http://www.zombo.com', title: 'Zombo', tags: [Tag.first_or_create(name: 'bubbles')])
+        Link.create(url: 'http://www.bubble-bobble.com', title: 'Bubble-Bobble', tags: [Tag.first_or_create(name: 'bubbles')])
+    end
+
   scenario 'filter links by tag' do
-    link = Link.create(url: 'http://x.com', title: 'X')
-    tag = Tag.create(name: 'not_bubbles')
-    LinkTag.create(link: link, tag: tag)
-    link1 = Link.create(url: 'http://y.com', title: 'Y')
-    tag1 = Tag.create(name: 'bubbles')
-    LinkTag.create(link: link1, tag: tag1)
     visit('/tags/bubbles')
-    expect(page).not_to have_content('X #not_bubbles')
-    expect(page).to have_content('Y #bubbles')
+    expect(page.status_code).to eq(200)
+    within 'ul#links' do
+    expect(page).not_to have_content('Makers Academy')
+    expect(page).not_to have_content('Google')
+    expect(page).to have_content('Zombo')
+    end
   end
 end
