@@ -1,5 +1,5 @@
-feature 'Creating links' do
-  scenario 'can add a link to the page' do
+feature 'Adding links' do
+  scenario 'adds a new link to the list of links' do
     visit('/new')
     fill_in(:title, with: "Twitter")
     fill_in(:url, with: "http://twitter.com")

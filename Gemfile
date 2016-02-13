@@ -8,4 +8,4 @@ gem "capybara"
 gem 'sinatra'
 gem 'selenium-webdriver'
 gem 'database_cleaner'
-
+gem 'rake'

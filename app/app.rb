@@ -6,26 +6,27 @@ require './data_mapper_setup'
 class BookmarkManager < Sinatra::Base
   get '/' do
     @links = Link.all
-    erb :index
+    erb(:index)
   end
 
   get '/new' do
-    erb :new
+    erb(:new)
   end
 
   post '/' do
+    tag_delimiter = /,\s*/
     link = Link.create(url: params[:url], title: params[:title])
-    tag = Tag.create(name: params[:tag])
-    #LinkTag.create(link: link, tag: tag)
-    link.tags << tag
+    params[:tags].split(tag_delimiter).each do |tag|
+      link.tags << Tag.first_or_create(category: tag)
+    end
     link.save
-    redirect '/'
+    redirect('/')
   end
 
-  get '/tags/:name' do
-    tag = Tag.first(name: params[:name])
-    @links= tag ? tag.links : []
-    erb :index
+  get '/tags/:tag' do
+    tag = Tag.first(category: params[:tag])
+    @links = tag ? tag.links : []
+    erb(:index)
   end
 
   # start the server if ruby file executed directly
