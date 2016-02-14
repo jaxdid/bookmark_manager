@@ -8,4 +8,3 @@ require './app/models/link'
 require './app/models/tag'
 
 DataMapper.finalize
-DataMapper.auto_upgrade!
